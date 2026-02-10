@@ -30,3 +30,76 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Clicker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #111;
+      color: #fff;
+      padding-top: 50px;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 15px 30px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    .stats {
+      font-size: 24px;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🔥 Clicker Game 🔥</h1>
+
+  <div class="stats">
+    Clicks: <span id="count">0</span><br>
+    Click Power: <span id="power">1</span>
+  </div>
+
+  <button onclick="clickButton()">CLICK</button><br>
+
+  <button onclick="buyUpgrade()">
+    Upgrade (+1 power) – Cost: <span id="cost">10</span>
+  </button>
+
+  <script>
+    let clicks = 0;
+    let power = 1;
+    let upgradeCost = 10;
+
+    function clickButton() {
+      clicks += power;
+      updateUI();
+    }
+
+    function buyUpgrade() {
+      if (clicks >= upgradeCost) {
+        clicks -= upgradeCost;
+        power += 1;
+        upgradeCost = Math.floor(upgradeCost * 1.5);
+        updateUI();
+      } else {
+        alert("Not enough clicks!");
+      }
+    }
+
+    function updateUI() {
+      document.getElementById("count").textContent = clicks;
+      document.getElementById("power").textContent = power;
+      document.getElementById("cost").textContent = upgradeCost;
+    }
+  </script>
+
+</body>
+</html>
